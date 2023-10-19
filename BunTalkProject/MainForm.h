@@ -32,12 +32,17 @@ namespace BunTalkProject {
 
 
 
-	private: List<Item^>^ selectedBreakfastItems;
+	private: List<Item^>^ selectedBreakfastItems = gcnew List<Item^>();
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ItemName;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Description;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Price;
-	private: System::Windows::Forms::DataGridViewCheckBoxColumn^ Check;
-	private: System::Windows::Forms::DataGridViewButtonColumn^ Select;
+	private: System::Windows::Forms::DataGridViewCheckBoxColumn^ Select;
+
+
+
+
+
 		   User^ user;
 
 	public:
@@ -132,8 +137,7 @@ namespace BunTalkProject {
 			this->ItemName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Description = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Check = (gcnew System::Windows::Forms::DataGridViewCheckBoxColumn());
-			this->Select = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+			this->Select = (gcnew System::Windows::Forms::DataGridViewCheckBoxColumn());
 			this->tableLayoutPanel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
@@ -145,9 +149,10 @@ namespace BunTalkProject {
 			this->label1->Font = (gcnew System::Drawing::Font(L"Modern No. 20", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->label1->Location = System::Drawing::Point(294, 21);
+			this->label1->Location = System::Drawing::Point(392, 26);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(332, 34);
+			this->label1->Size = System::Drawing::Size(404, 41);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Welcome To Bun Talk";
 			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -159,9 +164,10 @@ namespace BunTalkProject {
 			this->lblUserInfo->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblUserInfo->ForeColor = System::Drawing::SystemColors::AppWorkspace;
-			this->lblUserInfo->Location = System::Drawing::Point(20, 62);
+			this->lblUserInfo->Location = System::Drawing::Point(27, 76);
+			this->lblUserInfo->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblUserInfo->Name = L"lblUserInfo";
-			this->lblUserInfo->Size = System::Drawing::Size(9, 19);
+			this->lblUserInfo->Size = System::Drawing::Size(12, 26);
 			this->lblUserInfo->TabIndex = 1;
 			this->lblUserInfo->Text = L"\r\n";
 			// 
@@ -175,13 +181,14 @@ namespace BunTalkProject {
 			this->tableLayoutPanel1->Controls->Add(this->lblBevarages, 0, 1);
 			this->tableLayoutPanel1->Controls->Add(this->lblBrekfastMenu, 0, 0);
 			this->tableLayoutPanel1->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->tableLayoutPanel1->Location = System::Drawing::Point(1, 113);
+			this->tableLayoutPanel1->Location = System::Drawing::Point(1, 139);
+			this->tableLayoutPanel1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
 			this->tableLayoutPanel1->RowCount = 3;
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 33.33333F)));
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 33.33333F)));
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 33.33333F)));
-			this->tableLayoutPanel1->Size = System::Drawing::Size(121, 444);
+			this->tableLayoutPanel1->Size = System::Drawing::Size(161, 546);
 			this->tableLayoutPanel1->TabIndex = 2;
 			// 
 			// lblHelp
@@ -194,9 +201,10 @@ namespace BunTalkProject {
 			this->lblHelp->ForeColor = System::Drawing::SystemColors::AppWorkspace;
 			this->lblHelp->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"lblHelp.Image")));
 			this->lblHelp->ImageAlign = System::Drawing::ContentAlignment::TopCenter;
-			this->lblHelp->Location = System::Drawing::Point(3, 296);
+			this->lblHelp->Location = System::Drawing::Point(4, 364);
+			this->lblHelp->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblHelp->Name = L"lblHelp";
-			this->lblHelp->Size = System::Drawing::Size(115, 148);
+			this->lblHelp->Size = System::Drawing::Size(153, 182);
 			this->lblHelp->TabIndex = 2;
 			this->lblHelp->Text = L"Help";
 			this->lblHelp->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -212,9 +220,10 @@ namespace BunTalkProject {
 			this->lblBevarages->ForeColor = System::Drawing::SystemColors::AppWorkspace;
 			this->lblBevarages->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"lblBevarages.Image")));
 			this->lblBevarages->ImageAlign = System::Drawing::ContentAlignment::TopCenter;
-			this->lblBevarages->Location = System::Drawing::Point(3, 148);
+			this->lblBevarages->Location = System::Drawing::Point(4, 182);
+			this->lblBevarages->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblBevarages->Name = L"lblBevarages";
-			this->lblBevarages->Size = System::Drawing::Size(115, 148);
+			this->lblBevarages->Size = System::Drawing::Size(153, 182);
 			this->lblBevarages->TabIndex = 1;
 			this->lblBevarages->Text = L"Beverages";
 			this->lblBevarages->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -230,9 +239,10 @@ namespace BunTalkProject {
 			this->lblBrekfastMenu->ForeColor = System::Drawing::SystemColors::AppWorkspace;
 			this->lblBrekfastMenu->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"lblBrekfastMenu.Image")));
 			this->lblBrekfastMenu->ImageAlign = System::Drawing::ContentAlignment::TopCenter;
-			this->lblBrekfastMenu->Location = System::Drawing::Point(3, 0);
+			this->lblBrekfastMenu->Location = System::Drawing::Point(4, 0);
+			this->lblBrekfastMenu->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblBrekfastMenu->Name = L"lblBrekfastMenu";
-			this->lblBrekfastMenu->Size = System::Drawing::Size(115, 148);
+			this->lblBrekfastMenu->Size = System::Drawing::Size(153, 182);
 			this->lblBrekfastMenu->TabIndex = 0;
 			this->lblBrekfastMenu->Text = L"Breakfast Menu";
 			this->lblBrekfastMenu->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -242,16 +252,17 @@ namespace BunTalkProject {
 			// 
 			this->dataGridView1->BackgroundColor = System::Drawing::SystemColors::Menu;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
 				this->ItemName,
-					this->Description, this->Price, this->Check, this->Select
+					this->Description, this->Price, this->Select
 			});
 			this->dataGridView1->GridColor = System::Drawing::SystemColors::ControlLight;
-			this->dataGridView1->Location = System::Drawing::Point(120, 113);
+			this->dataGridView1->Location = System::Drawing::Point(160, 139);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
 			this->dataGridView1->RowHeadersWidth = 51;
-			this->dataGridView1->Size = System::Drawing::Size(784, 444);
+			this->dataGridView1->Size = System::Drawing::Size(1045, 546);
 			this->dataGridView1->TabIndex = 3;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MainForm::dataGridView1_CellContentClick);
 			// 
@@ -260,9 +271,10 @@ namespace BunTalkProject {
 			this->btnCheckOutCart->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->btnCheckOutCart->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnCheckOutCart.BackgroundImage")));
 			this->btnCheckOutCart->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->btnCheckOutCart->Location = System::Drawing::Point(930, 62);
+			this->btnCheckOutCart->Location = System::Drawing::Point(1240, 76);
+			this->btnCheckOutCart->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->btnCheckOutCart->Name = L"btnCheckOutCart";
-			this->btnCheckOutCart->Size = System::Drawing::Size(37, 35);
+			this->btnCheckOutCart->Size = System::Drawing::Size(49, 43);
 			this->btnCheckOutCart->TabIndex = 4;
 			this->btnCheckOutCart->UseVisualStyleBackColor = false;
 			this->btnCheckOutCart->Click += gcnew System::EventHandler(this, &MainForm::btnCheckOutCart_Click);
@@ -289,36 +301,29 @@ namespace BunTalkProject {
 			this->Price->HeaderText = L"Price";
 			this->Price->MinimumWidth = 6;
 			this->Price->Name = L"Price";
-			// 
-			// Check
-			// 
-			this->Check->HeaderText = L"Select";
-			this->Check->Name = L"Check";
+			this->Price->Width = 125;
 			// 
 			// Select
 			// 
-			this->Select->DataPropertyName = L"Select";
-			this->Select->HeaderText = L"";
+			this->Select->HeaderText = L"Select";
 			this->Select->MinimumWidth = 6;
 			this->Select->Name = L"Select";
-			this->Select->Text = L"Add To Cart";
-			this->Select->ToolTipText = L"Select";
-			this->Select->UseColumnTextForButtonValue = true;
-			this->Select->Width = 75;
+			this->Select->Width = 125;
 			// 
 			// MainForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(1015, 579);
+			this->ClientSize = System::Drawing::Size(1353, 713);
 			this->Controls->Add(this->btnCheckOutCart);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->tableLayoutPanel1);
 			this->Controls->Add(this->lblUserInfo);
 			this->Controls->Add(this->label1);
-			this->MinimumSize = System::Drawing::Size(900, 618);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->MinimumSize = System::Drawing::Size(1194, 750);
 			this->Name = L"MainForm";
 			this->Text = L"MainForm";
 			this->tableLayoutPanel1->ResumeLayout(false);
@@ -411,13 +416,12 @@ namespace BunTalkProject {
 }
 
 	private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-		selectedBreakfastItems = gcnew List<Item^>();
 
 		try {
 			if (e->ColumnIndex == dataGridView1->Columns["Select"]->Index && e->RowIndex >= 0) {
 
-				DataGridViewCheckBoxCell^ checkboxCell = dynamic_cast<DataGridViewCheckBoxCell^>(dataGridView1["Check", e->RowIndex]);
-				if (checkboxCell != nullptr && Convert::ToBoolean(checkboxCell->Value)) {
+				DataGridViewCheckBoxCell^ checkboxCell = dynamic_cast<DataGridViewCheckBoxCell^>(dataGridView1["Select", e->RowIndex]);
+				if (checkboxCell != nullptr && checkboxCell->Selected) {
 
 					DataGridViewRow^ selectedRow = dataGridView1->Rows[e->RowIndex];
 

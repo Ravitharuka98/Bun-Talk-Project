@@ -1,10 +1,9 @@
 #pragma once
 #include "user.h"
 #include "Item.h"
-#include "PrintBillForm.h"
-#include "MainForm.h"
 #include "LogInForm.h"
 #include "RegisterForm.h"
+#include "BillForm.h"
 
 namespace BunTalkProject {
 
@@ -15,7 +14,7 @@ namespace BunTalkProject {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Collections::Generic;
-
+	
 	/// <summary>
 	/// Summary for ShoppingCart
 	/// </summary>
@@ -23,12 +22,18 @@ namespace BunTalkProject {
 	{
 		User^ currentUser;
 	private: System::Windows::Forms::Label^ lblName;
+
+
+
+
+
+	private: System::Windows::Forms::Button^ btnPrintBill;
+	private: System::Windows::Forms::Label^ lbltotalAmount;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ItemName;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Price;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Quantity;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ TotalPrice;
 	private: System::Windows::Forms::DataGridViewButtonColumn^ Remove;
-	private: System::Windows::Forms::Button^ btnPrintBill;
 
 
 		   List<Item^>^ selectedBreakfastItems;
@@ -45,6 +50,8 @@ namespace BunTalkProject {
 			//TODO: Add the constructor code here
 			//
 			this->currentUser = user;
+			
+			selectedItems->Sort();
 			this->selectedBreakfastItems = selectedItems;
 
 			PopulateShoppingCart(selectedItems);
@@ -83,6 +90,7 @@ namespace BunTalkProject {
 		{
 			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->lbltotalAmount = (gcnew System::Windows::Forms::Label());
 			this->btnPrintBill = (gcnew System::Windows::Forms::Button());
 			this->lblName = (gcnew System::Windows::Forms::Label());
 			this->cartGridView = (gcnew System::Windows::Forms::DataGridView());
@@ -97,6 +105,7 @@ namespace BunTalkProject {
 			// 
 			// groupBox1
 			// 
+			this->groupBox1->Controls->Add(this->lbltotalAmount);
 			this->groupBox1->Controls->Add(this->btnPrintBill);
 			this->groupBox1->Controls->Add(this->lblName);
 			this->groupBox1->Controls->Add(this->cartGridView);
@@ -108,6 +117,15 @@ namespace BunTalkProject {
 			this->groupBox1->TabIndex = 0;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Shopping Cart";
+			// 
+			// lbltotalAmount
+			// 
+			this->lbltotalAmount->AutoSize = true;
+			this->lbltotalAmount->Location = System::Drawing::Point(316, 453);
+			this->lbltotalAmount->Name = L"lbltotalAmount";
+			this->lbltotalAmount->Size = System::Drawing::Size(39, 22);
+			this->lbltotalAmount->TabIndex = 3;
+			this->lbltotalAmount->Text = L"Rs. ";
 			// 
 			// btnPrintBill
 			// 
@@ -139,31 +157,40 @@ namespace BunTalkProject {
 			});
 			this->cartGridView->Location = System::Drawing::Point(36, 70);
 			this->cartGridView->Name = L"cartGridView";
+			this->cartGridView->RowHeadersWidth = 51;
 			this->cartGridView->Size = System::Drawing::Size(597, 357);
 			this->cartGridView->TabIndex = 0;
 			this->cartGridView->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ShoppingCart::cartGridView_CellContentClick);
+			this->cartGridView->CellValidated += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ShoppingCart::cartGridView_CellValidated);
 			// 
 			// ItemName
 			// 
 			this->ItemName->HeaderText = L"Item";
+			this->ItemName->MinimumWidth = 6;
 			this->ItemName->Name = L"ItemName";
-			this->ItemName->Width = 200;
+			this->ItemName->Width = 150;
 			// 
 			// Price
 			// 
 			this->Price->HeaderText = L"Price";
+			this->Price->MinimumWidth = 6;
 			this->Price->Name = L"Price";
+			this->Price->Width = 75;
 			// 
 			// Quantity
 			// 
 			this->Quantity->DataPropertyName = L"quantity";
 			this->Quantity->HeaderText = L"Quantity";
+			this->Quantity->MinimumWidth = 6;
 			this->Quantity->Name = L"Quantity";
+			this->Quantity->Width = 80;
 			// 
 			// TotalPrice
 			// 
 			this->TotalPrice->HeaderText = L"Total Amount";
+			this->TotalPrice->MinimumWidth = 6;
 			this->TotalPrice->Name = L"TotalPrice";
+			this->TotalPrice->Width = 125;
 			// 
 			// Remove
 			// 
@@ -174,6 +201,7 @@ namespace BunTalkProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
 			this->Remove->DefaultCellStyle = dataGridViewCellStyle1;
 			this->Remove->HeaderText = L"";
+			this->Remove->MinimumWidth = 6;
 			this->Remove->Name = L"Remove";
 			this->Remove->Text = L"Remove item";
 			this->Remove->ToolTipText = L"Remove";
@@ -199,13 +227,12 @@ namespace BunTalkProject {
 		void PopulateShoppingCart(List<Item^>^ selectedItems)
 		{
 			// Display user information
-			lblName->Text = "User: " + currentUser->UserName + " Address" + currentUser->Address;
+			lblName->Text = "User: " +"  " + currentUser->UserName + " Address  " + currentUser->Address;
 
-			DataGridViewRow^ row = gcnew DataGridViewRow();
 
 			for each (Item ^ breakfastItem in selectedBreakfastItems)
 			{
-
+				DataGridViewRow^ row = gcnew DataGridViewRow();
 				DataGridViewTextBoxCell^ itemNameCell = gcnew DataGridViewTextBoxCell();
 				DataGridViewTextBoxCell^ priceCell = gcnew DataGridViewTextBoxCell();
 				DataGridViewTextBoxCell^ quantityColumn = gcnew DataGridViewTextBoxCell();
@@ -217,7 +244,7 @@ namespace BunTalkProject {
 				// Add cells to the row
 				row->Cells->Add(itemNameCell);
 				row->Cells->Add(priceCell);
-
+				
 				// Add the row to the DataGridView
 				cartGridView->Rows->Add(row);
 			}
@@ -234,15 +261,16 @@ namespace BunTalkProject {
 
 				// Retrieve the item you want to remove (assuming you have stored the items)
 				Item^ itemToRemove = dynamic_cast<Item^>(selectedRow->DataBoundItem);
-
-				if (itemToRemove != nullptr) {
+				selectedBreakfastItems->RemoveAt(e->RowIndex);
+				cartGridView->Rows->Remove(selectedRow);
+				/*if (itemToRemove != nullptr) {
 					selectedBreakfastItems->Remove(itemToRemove);
 
 					cartGridView->DataSource = nullptr;
 					cartGridView->DataSource = selectedBreakfastItems;
 
+				}*/
 					cartGridView->Refresh();
-				}
 			}
 		}
 		catch (Exception^ ex) {
@@ -274,10 +302,90 @@ namespace BunTalkProject {
 
 	private: System::Void btnPrintBill_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		/*BunTalkProject::PrintBillForm^ printBill = gcnew BunTalkProject::PrintBillForm(currentUser, selectedBreakfastItems);
-		printBill->ShowDialog();*/
+		BunTalkProject::BillForm^ billForm = gcnew BillForm();
+
+		// Populate user name and address
+		billForm->lblCusName->Text = currentUser->UserName; 
+		billForm->lblCusAddress->Text = currentUser->Address ;  
+
+		
+
+			// Populate DataGridView with item details (replace this with your actual data)
+		for (int rowIndex = 0; rowIndex < cartGridView->Rows->Count; rowIndex++)
+		{
+			DataGridViewRow^ row = cartGridView->Rows[rowIndex];
+
+			if (row != nullptr && row->Cells["ItemName"]->Value != nullptr &&
+				row->Cells["Price"]->Value != nullptr && row->Cells["Quantity"]->Value != nullptr &&
+				row->Cells["TotalPrice"]->Value != nullptr)
+			{
+				String^ itemName = cartGridView->Rows[rowIndex]->Cells["ItemName"]->Value->ToString();
+				double itemPrice = Convert::ToDouble(cartGridView->Rows[rowIndex]->Cells["Price"]->Value);
+				int itemQuantity = Convert::ToInt32(cartGridView->Rows[rowIndex]->Cells["Quantity"]->Value);
+				double itemTotalPrice = Convert::ToDouble(cartGridView->Rows[rowIndex]->Cells["TotalPrice"]->Value);
+
+				// Add a row to the DataGridView on the BillForm
+				billForm->billGridView->Rows->Add(itemName, itemPrice, itemQuantity, itemTotalPrice);
+				double totalSum = 0.0;
+
+				for (int rowIndex = 0; rowIndex < cartGridView->Rows->Count; rowIndex++)
+				{
+					// Check if the "TotalPrice" column has a valid value in the current row
+					if (cartGridView->Rows[rowIndex]->Cells["TotalPrice"]->Value != nullptr)
+					{
+						double totalPrice = Convert::ToDouble(cartGridView->Rows[rowIndex]->Cells["TotalPrice"]->Value);
+						totalSum += totalPrice;
+					}
+					lbltotalAmount->Text = "Total Amount: $" + totalSum.ToString();
+				}
+				billForm->lblTotalAmount->Text = "Total Amount: $" + totalSum.ToString();
+			}
+		}
+		
+		// Set the total sum value on the BillForm (assuming you already calculated it)
+		
+
+		// Show the BillForm
+		billForm->ShowDialog();
 
 		
 	}
-	};
+	private: System::Void cartGridView_CellValidated(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		try {
+			// Check if the cell that changed is in the "Quantity" column
+			if (e->ColumnIndex == cartGridView->Columns["Quantity"]->Index && e->RowIndex >= 0) {
+				DataGridViewRow^ selectedRow = cartGridView->Rows[e->RowIndex];
+
+				// Retrieve the item and quantity from the selected row
+				Item^ selectedItem = selectedBreakfastItems[e->RowIndex];
+				int newQuantity = System::Convert::ToInt32(selectedRow->Cells["Quantity"]->Value);
+
+				// Update the calculations based on the new quantity
+				double totalPrice = selectedItem->Price * newQuantity;
+
+				// Update the "Total Price" column in the same row
+				selectedRow->Cells["TotalPrice"]->Value = totalPrice;
+
+				double totalSum = 0.0;
+
+				for (int rowIndex = 0; rowIndex < cartGridView->Rows->Count; rowIndex++)
+				{
+					// Check if the "TotalPrice" column has a valid value in the current row
+					if (cartGridView->Rows[rowIndex]->Cells["TotalPrice"]->Value != nullptr)
+					{
+						double totalPrice = Convert::ToDouble(cartGridView->Rows[rowIndex]->Cells["TotalPrice"]->Value);
+						totalSum += totalPrice;
+					}
+					lbltotalAmount->Text = "Total Amount: $" + totalSum.ToString();
+				}
+
+			}	
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("An error occurred: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+
+	}
+
+};
 }

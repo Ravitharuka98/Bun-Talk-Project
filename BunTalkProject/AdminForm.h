@@ -83,9 +83,11 @@ namespace BunTalkProject {
 			this->groupBox1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->groupBox1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->groupBox1->Location = System::Drawing::Point(91, 85);
+			this->groupBox1->Location = System::Drawing::Point(121, 105);
+			this->groupBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(359, 355);
+			this->groupBox1->Padding = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->groupBox1->Size = System::Drawing::Size(479, 437);
 			this->groupBox1->TabIndex = 0;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Admin Log In";
@@ -93,9 +95,10 @@ namespace BunTalkProject {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(24, 23);
+			this->pictureBox1->Location = System::Drawing::Point(32, 28);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(33, 33);
+			this->pictureBox1->Size = System::Drawing::Size(44, 41);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 1;
 			this->pictureBox1->TabStop = false;
@@ -103,9 +106,10 @@ namespace BunTalkProject {
 			// btnLogin
 			// 
 			this->btnLogin->BackColor = System::Drawing::Color::DarkGray;
-			this->btnLogin->Location = System::Drawing::Point(174, 194);
+			this->btnLogin->Location = System::Drawing::Point(232, 239);
+			this->btnLogin->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->btnLogin->Name = L"btnLogin";
-			this->btnLogin->Size = System::Drawing::Size(88, 32);
+			this->btnLogin->Size = System::Drawing::Size(117, 39);
 			this->btnLogin->TabIndex = 4;
 			this->btnLogin->Text = L"Log In";
 			this->btnLogin->UseVisualStyleBackColor = false;
@@ -113,44 +117,50 @@ namespace BunTalkProject {
 			// 
 			// txtAdminPassword
 			// 
-			this->txtAdminPassword->Location = System::Drawing::Point(151, 145);
+			this->txtAdminPassword->Location = System::Drawing::Point(201, 178);
+			this->txtAdminPassword->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtAdminPassword->Name = L"txtAdminPassword";
-			this->txtAdminPassword->Size = System::Drawing::Size(139, 27);
+			this->txtAdminPassword->PasswordChar = '*';
+			this->txtAdminPassword->Size = System::Drawing::Size(184, 32);
 			this->txtAdminPassword->TabIndex = 3;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(34, 149);
+			this->label2->Location = System::Drawing::Point(45, 183);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(78, 20);
+			this->label2->Size = System::Drawing::Size(99, 25);
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"Password";
 			// 
 			// txtAdminUserName
 			// 
-			this->txtAdminUserName->Location = System::Drawing::Point(151, 103);
+			this->txtAdminUserName->Location = System::Drawing::Point(201, 127);
+			this->txtAdminUserName->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtAdminUserName->Name = L"txtAdminUserName";
-			this->txtAdminUserName->Size = System::Drawing::Size(139, 27);
+			this->txtAdminUserName->Size = System::Drawing::Size(184, 32);
 			this->txtAdminUserName->TabIndex = 1;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(34, 106);
+			this->label1->Location = System::Drawing::Point(45, 130);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(89, 20);
+			this->label1->Size = System::Drawing::Size(114, 25);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"User Name";
 			// 
 			// AdminForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(884, 581);
+			this->ClientSize = System::Drawing::Size(1179, 715);
 			this->Controls->Add(this->groupBox1);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"AdminForm";
 			this->Text = L"AdminForm";
 			this->groupBox1->ResumeLayout(false);

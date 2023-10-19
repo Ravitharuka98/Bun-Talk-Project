@@ -125,13 +125,13 @@
   <ItemGroup>
     <ClCompile Include="AdminDashBoardForm.cpp" />
     <ClCompile Include="AdminForm.cpp" />
+    <ClCompile Include="BillForm.cpp" />
     <ClCompile Include="InstructionForm.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="LoadingForm.cpp" />
     <ClCompile Include="LogInForm.cpp" />
     <ClCompile Include="LogInProgram.cpp" />
     <ClCompile Include="MainForm.cpp" />
-    <ClCompile Include="PrintBillForm.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
     <ClCompile Include="ShoppingCart.cpp" />
   </ItemGroup>
@@ -140,6 +140,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="AdminForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="BillForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="InstructionForm.h">
@@ -169,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillForm.resx">
+      <DependentUpon>BillForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InstructionForm.resx">
       <DependentUpon>InstructionForm.h</DependentUpon>

@@ -316,7 +316,7 @@ namespace BunTalkProject {
 				// Add data to the DataGridView
 				DataGridViewRow^ row = gcnew DataGridViewRow();
 				row->CreateCells(dataGridView1);
-				row->SetValues(itemName, description, price,foodType);
+				row->SetValues(itemName, description, price, foodType);
 				dataGridView1->Rows->Add(row);
 			}
 
@@ -385,13 +385,13 @@ namespace BunTalkProject {
 			Decimal price = Decimal::Parse(selectedRow->Cells["Price"]->Value->ToString());
 			String^ foodType = selectedRow->Cells["ItemType"]->Value->ToString();
 
-			
+
 			txtItemName->Text = itemName;
 			txtDescription->Text = description;
 			txtPrice->Text = price.ToString();
 			comboFoodType->Text = foodType;
 
-			UpdateItemInDatabase( itemName, description, price, foodType);
+			UpdateItemInDatabase(itemName, description, price, foodType);
 
 		}
 		else {
@@ -440,6 +440,11 @@ namespace BunTalkProject {
 
 				// Delete the item from the database based on the unique identifier (itemID)
 				DeleteItemFromDatabase(itemName);
+
+				txtItemName->Text = "";
+				txtDescription->Text = "";
+				txtPrice->Text = "";
+				comboFoodType->Text = "";
 			}
 		}
 		else {
@@ -463,12 +468,17 @@ namespace BunTalkProject {
 				   sqlConn.Close();
 
 				   MessageBox::Show("Item deleted successfully.", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+				   txtItemName->Text = "";
+				   txtDescription->Text = "";
+				   txtPrice->Text = "";
+				   comboFoodType->Text = "";
 			   }
 			   catch (Exception^ ex) {
 				   MessageBox::Show("An error occurred while deleting the item: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			   }
 		   }
-};
+	};
 
 
 }
